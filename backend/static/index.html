@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5ef">
+  <meta name="description" content="A focused student performance and academic risk assessment workspace.">
+  <title>EduMind | Student insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="EduMind home">
+        <span class="brand-mark" aria-hidden="true">E</span>
+        <span class="brand-name">edu<span>mind</span><small>STUDENT INSIGHTS</small></span>
+      </a>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav aria-label="Main navigation">
+        <a class="nav-item active" href="#assessment" aria-current="page"><span class="nav-icon">◫</span> New assessment <span class="nav-indicator"></span></a>
+        <a class="nav-item" href="/cohort"><span class="nav-icon">▤</span> Cohort analysis</a>
+        <a class="nav-item" href="#recent"><span class="nav-icon">◷</span> Recent assessments</a>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <section class="model-status" aria-label="Model status">
+        <div class="status-heading"><span class="status-dot"></span> Model online</div>
+        <p>Performance + risk models are ready to assess a student profile.</p>
+        <span class="model-tag">EDUMIND · V1.0</span>
+      </section>
+      <div class="sidebar-foot"><span class="foot-mark">EM</span><span>Academic support workspace</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb">Workspace <span>/</span> <strong>New assessment</strong></div>
+        <div class="topbar-right"><span class="privacy-note"><span aria-hidden="true">●</span> Inputs aren't saved to history</span><div class="avatar" aria-label="Advisor workspace">A</div></div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="page-heading" id="assessment">
+          <div>
+            <p class="eyebrow">STUDENT SUCCESS / OVERVIEW</p>
+            <h1>Academic <em>signals.</em></h1>
+            <p class="heading-copy">Bring the full picture into focus. Assess current performance and surface where timely support may help.</p>
+          </div>
+          <div class="heading-date"><span class="date-kicker">ASSESSMENT DESK</span><span id="today-date"></span><span class="date-rule"></span><a class="heading-action" href="/cohort">Analyze a cohort <span aria-hidden="true">→</span></a></div>
+        </section>
+
+        <section class="stats-strip" aria-label="Assessment overview">
+          <div class="stat-cell"><span class="stat-label">MODEL STATUS</span><strong><span class="live-pulse"></span> Ready</strong><span class="stat-detail">Prediction service available</span></div>
+          <div class="stat-cell"><span class="stat-label">ASSESSMENT TYPE</span><strong>Individual profile</strong><span class="stat-detail">Performance + risk estimate</span></div>
+          <div class="stat-cell"><span class="stat-label">RECENTLY REVIEWED</span><strong id="recent-count">0 estimates</strong><span class="stat-detail">Saved in this browser</span></div>
+          <div class="stat-cell stat-note"><span class="note-mark">i</span><span>Use predictions as one input to a supportive conversation, not as a final decision.</span></div>
+        </section>
+
+        <div class="work-grid">
+          <section class="form-panel panel" aria-labelledby="form-title">
+            <div class="panel-heading">
+              <div><p class="eyebrow">PROFILE INPUT</p><h2 id="form-title">Student indicators</h2></div>
+              <button class="text-button" id="sample-button" type="button"><span aria-hidden="true">↗</span> Load sample</button>
+            </div>
+            <p class="panel-intro">Enter the latest available values. Fields reflect the model's training ranges.</p>
+
+            <form id="assessment-form">
+              <fieldset>
+                <legend><span class="legend-index">01</span> Learning engagement</legend>
+                <div class="field-grid">
+                  <label class="field"><span>Attendance <small>%</small></span><input name="attendance" type="number" min="40" max="100" step="0.1" value="78" required><small class="field-hint">40–100%</small></label>
+                  <label class="field"><span>Study hours <small>per day</small></span><input name="study_hours" type="number" min="0.5" max="10" step="0.1" value="3.5" required><small class="field-hint">0.5–10 hours</small></label>
+                  <label class="field"><span>Participation <small>/ 100</small></span><input name="participation_score" type="number" min="10" max="100" step="0.1" value="68" required><small class="field-hint">10–100 points</small></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend><span class="legend-index">02</span> Academic standing</legend>
+                <div class="field-grid">
+                  <label class="field"><span>Previous CGPA <small>/ 10</small></span><input name="previous_cgpa" type="number" min="4" max="10" step="0.01" value="7.2" required><small class="field-hint">4.0–10.0</small></label>
+                  <label class="field"><span>Internal marks <small>/ 100</small></span><input name="internal_marks" type="number" min="20" max="100" step="0.1" value="68" required><small class="field-hint">20–100 points</small></label>
+                  <label class="field"><span>Assignment score <small>/ 100</small></span><input name="assignment_score" type="number" min="20" max="100" step="0.1" value="72" required><small class="field-hint">20–100 points</small></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="history-fields">
+                <legend><span class="legend-index">03</span> Academic history</legend>
+                <div class="field-grid field-grid-two">
+                  <label class="field"><span>Current backlogs</span><input name="backlogs" type="number" min="0" max="6" step="1" value="1" required><small class="field-hint">0–6 subjects</small></label>
+                  <label class="field"><span>Previous failures</span><input name="previous_failures" type="number" min="0" max="5" step="1" value="0" required><small class="field-hint">0–5 subjects</small></label>
+                </div>
+              </fieldset>
+
+              <div class="form-actions"><span class="required-note"><span>*</span> All indicators required</span><button class="submit-button" id="submit-button" type="submit"><span>Generate assessment</span><span class="button-arrow" aria-hidden="true">→</span></button></div>
+              <p class="form-error" id="form-error" role="alert" hidden></p>
+            </form>
+          </section>
+
+          <section class="result-column" aria-label="Assessment result">
+            <div class="result-panel panel" id="result-panel" aria-live="polite">
+              <div class="panel-heading result-heading"><div><p class="eyebrow">MODEL OUTPUT</p><h2>Assessment</h2></div><span class="result-state" id="result-state">AWAITING INPUT</span></div>
+              <div class="empty-state" id="empty-state"><div class="empty-graphic" aria-hidden="true"><span class="graphic-line line-one"></span><span class="graphic-line line-two"></span><span class="graphic-dot"></span><span class="graphic-axis"></span></div><h3>Your next step starts here.</h3><p>Complete the student indicators and generate an assessment to see the model's performance estimate and risk signals.</p><span class="empty-caption">NO PROFILE ASSESSED</span></div>
+              <div class="result-content" id="result-content" hidden>
+                <div class="score-row"><div class="score-ring" id="score-ring"><div class="score-ring-inner"><strong id="performance-score">--</strong><span>OUT OF 100</span></div></div><div class="score-copy"><span class="score-label">PREDICTED PERFORMANCE</span><h3 id="score-description">Performance estimate</h3><p>Model estimate based on the indicators provided.</p></div></div>
+                <div class="risk-summary"><div><span class="score-label">ACADEMIC RISK SIGNAL</span><p>Predicted category from the model</p></div><span class="risk-badge" id="risk-badge">--</span></div>
+                <div class="probability-section"><div class="probability-title"><span>Risk probability distribution</span><span>MODEL CONFIDENCE</span></div><div id="probability-bars"></div></div>
+                <div class="result-foot"><span class="result-reference" id="result-reference"></span><button class="text-button copy-button" id="copy-button" type="button" title="Copy assessment summary"><span aria-hidden="true">▣</span> Copy summary</button></div>
+              </div>
+            </div>
+            <div class="guidance-band"><span class="guidance-symbol" aria-hidden="true">↗</span><p><strong>Keep the human in the loop.</strong> This estimate is based on synthetic training data. Review the context with the student before deciding what support is appropriate.</p></div>
+            <section class="recent-panel panel" id="recent">
+              <div class="recent-heading"><div><p class="eyebrow">LOCAL ACTIVITY</p><h2>Recent assessments</h2></div><button class="text-button clear-button" id="clear-history" type="button" hidden>Clear</button></div>
+              <div class="history-list" id="history-list"><div class="history-empty">Assessments from this browser will appear here.</div></div>
+            </section>
+          </section>
+        </div>
+        <footer class="page-footer"><span>EDUMIND-AI <span class="footer-separator">/</span> STUDENT SUCCESS WORKSPACE</span><span>Built by Vishal Sharma <span class="footer-separator">/</span> Model predictions are indicative, not determinative.</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
